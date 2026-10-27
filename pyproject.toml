@@ -1,0 +1,15 @@
+[project]
+name = "dz-catalog-analysis-shamsutdinova-m26-555"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Эльвина Шамсутдинова", email = "elvina110198@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "ruff>=0.17.3",
+]
