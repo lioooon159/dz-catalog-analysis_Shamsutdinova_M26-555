@@ -1,3 +1,5 @@
+import math
+
 movies = [
     {"title": "The Dune Chronicles", "year": 2021, "genres": {"sci-fi", "drama"},
      "rating": 8.6, "duration_min": 155, "actors": ["T. Chalamet", "R. Ferguson", "O. Isaac"]}, # noqa: E501
@@ -28,8 +30,21 @@ def average_rating(movies):
         total += movie["rating"]
     average = total / len(movies)
     return round(average, 1)
- 
+
+
+def catalog_age_stats(movies, current_year=2026):
+    ages_movies = [current_year - m["year"] for m in movies]
+    old_m = max(ages_movies)
+    young_m = min(ages_movies)
+    aver_m = math.ceil(sum(ages_movies) / len(ages_movies))
+    return old_m, young_m, aver_m
 
 if __name__ == "__main__":
     print(f"Каталог загружен: {len(movies)} фильмов")
     print(f"Средняя оценка по каталогу: {average_rating(movies)}")
+    stats = catalog_age_stats(movies)
+    print(
+    f"Cамый старый фильм в годах: {stats[0]}, " 
+    f"самый новый фильм в годах: {stats[1]}, "
+    f"среднее {stats[2]}"
+)
