@@ -1,6 +1,6 @@
 movies = [
     {"title": "The Dune Chronicles", "year": 2021, "genres": {"sci-fi", "drama"},
-     "rating": 8.6, "duration_min": 155, "actors": ["T. Chalamet", "R. Ferguson", "O. Isaac"]},# noqa: E501
+     "rating": 8.6, "duration_min": 155, "actors": ["T. Chalamet", "R. Ferguson", "O. Isaac"]}, # noqa: E501
     {"title": "Kitchen Stories", "year": 2019, "genres": {"comedy", "drama"},
      "rating": 7.1, "duration_min": 98, "actors": ["A. Novak", "M. Ferguson"]},
     {"title": "silent hours", "year": 2016, "genres": {"thriller", "drama"},
@@ -21,5 +21,15 @@ movies = [
      "rating": 7.3, "duration_min": 129, "actors": ["P. Diaz", "T. Chalamet"]},
 ]
 
+
+def average_rating(movies):
+    total = 0
+    for movie in movies:
+        total += movie["rating"]
+    average = total / len(movies)
+    return round(average, 1)
+ 
+
 if __name__ == "__main__":
     print(f"Каталог загружен: {len(movies)} фильмов")
+    print(f"Средняя оценка по каталогу: {average_rating(movies)}")
