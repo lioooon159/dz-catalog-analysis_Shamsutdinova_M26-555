@@ -39,6 +39,12 @@ def catalog_age_stats(movies, current_year=2026):
     aver_m = math.ceil(sum(ages_movies) / len(ages_movies))
     return old_m, young_m, aver_m
 
+
+def duration_in_hours(minutes):
+    hours = minutes // 60
+    mins = minutes % 60
+    return f"{hours} ч {mins} м"
+
 if __name__ == "__main__":
     print(f"Каталог загружен: {len(movies)} фильмов")
     print(f"Средняя оценка по каталогу: {average_rating(movies)}")
@@ -48,3 +54,4 @@ if __name__ == "__main__":
     f"самый новый фильм в годах: {stats[1]}, "
     f"среднее {stats[2]}"
 )
+    print(f"Длительность фильма: {duration_in_hours(155)}")
