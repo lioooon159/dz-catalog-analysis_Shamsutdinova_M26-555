@@ -64,14 +64,45 @@ def decade_label(year):
         case _:
             return "старые"
 
+def non_comedian(movies):
+    for movie in movies:
+        if "comedy" in movie["genres"]:
+            continue
+        print(movie["title"])
+
+
+def masterpiece(movies):
+    i = 0
+    while i < len(movies):
+        if movies[i]["rating"] > 9:
+            print(f"Шедевр: {movies[i]['title']}")
+            break
+        i += 1
+    else:
+        print("Шедевров не найдено")
+
+
+def count_long_movies(movies, threshold=120):
+    count_long = 0
+    for movie in movies:
+        if movie["duration_min"] > threshold:
+            count_long += 1
+    return count_long
+
 if __name__ == "__main__":
     print(f"Каталог загружен: {len(movies)} фильмов")
     print(f"Средняя оценка по каталогу: {average_rating(movies)}")
     stats = catalog_age_stats(movies)
     print(
-        f"cамый старый фильм в годах: {stats[0]}, " 
+        f"самый старый фильм в годах: {stats[0]}, "
         f"самый новый фильм в годах: {stats[1]}, "
         f"среднее {stats[2]}"
     )
     print(f"Длительность фильма: {duration_in_hours(155)}")
+    print("Не комедии:")
+    non_comedian(movies)
+    masterpiece(movies)
+    masterpiece(movies[:7])
+    print(f"Фильмов с длительностью > 120 мин: {count_long_movies(movies)}")
+
     
