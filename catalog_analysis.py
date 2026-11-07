@@ -45,13 +45,33 @@ def duration_in_hours(minutes):
     mins = minutes % 60
     return f"{hours}ч {mins}м"
 
+
+def rating_tier(rating):
+    if rating >= 7:
+        return "шедевр" if rating >= 9 else "хорошо"
+    elif rating >= 5:
+        return "средне"
+    else:
+        return "слабо"
+
+
+def decade_label(year):
+    match year:
+        case _ if year > 2020:
+            return "новые"
+        case _ if year >= 2015:
+            return "недавние"
+        case _:
+            return "старые"
+
 if __name__ == "__main__":
     print(f"Каталог загружен: {len(movies)} фильмов")
     print(f"Средняя оценка по каталогу: {average_rating(movies)}")
     stats = catalog_age_stats(movies)
     print(
-    f"Cамый старый фильм в годах: {stats[0]}, " 
-    f"самый новый фильм в годах: {stats[1]}, "
-    f"среднее {stats[2]}"
-)
+        f"cамый старый фильм в годах: {stats[0]}, " 
+        f"самый новый фильм в годах: {stats[1]}, "
+        f"среднее {stats[2]}"
+    )
     print(f"Длительность фильма: {duration_in_hours(155)}")
+    
