@@ -89,6 +89,29 @@ def count_long_movies(movies, threshold=120):
             count_long += 1
     return count_long
 
+
+def normalize_title(title):
+    words = title.split()
+    normalize = []
+    for w in words:
+        normalize.append(w[0].upper() + w[1:])
+    return " ".join(normalize)
+
+
+def make_slug(title):
+    return title.lower().replace(" ", "-")
+
+
+def format_report_line(movie):
+    norm = normalize_title(movie["title"])
+    duration = duration_in_hours(movie["duration_min"])
+    genre = ", ".join(sorted(movie["genres"]))
+    return (
+        f'"{norm}" ({movie["year"]}) — '
+        f'{movie["rating"]}/10, {duration}, жанры: {genre}'
+    )
+    
+
 if __name__ == "__main__":
     print(f"Каталог загружен: {len(movies)} фильмов")
     print(f"Средняя оценка по каталогу: {average_rating(movies)}")
@@ -104,5 +127,9 @@ if __name__ == "__main__":
     masterpiece(movies)
     masterpiece(movies[:7])
     print(f"Фильмов с длительностью > 120 мин: {count_long_movies(movies)}")
+    print(normalize_title("midnight in oslo"))
+    print(make_slug("The Last Bakery"))
+    print(format_report_line(movies[4]))
+    print(format_report_line(movies[7]))
 
     
